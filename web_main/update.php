@@ -84,7 +84,7 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="./create.php">Contrace</a>
+            <a href="#">Contrace</a>
         </div>
 
         <ul class="navlinks">

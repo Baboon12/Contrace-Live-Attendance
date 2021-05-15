@@ -26,7 +26,7 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="./create.php">Contrace</a>
+            <a href="#.php">Contrace</a>
         </div>
 
         <ul class="navlinks">
@@ -34,7 +34,7 @@
                 <a href="./create.php">Add</a>
             </li>
             <li>
-                <a href="#">View</a>
+                <a href="./view.php">View</a>
             </li>
             <li>
                 <a href="../includes/logout.php">Logout</a>
@@ -53,12 +53,12 @@
     <div class="view-parent-container">
         <div class="view-container">
 
-                <form action="#" class="view_form" name="view_form">
+                <form action="view.php" method="POST" class="view_form" name="view_form">
 
                     <div class="view-control">
                         <label for="faculty_id">ID</label>
                         <input type="text" name="faculty_id" id="faculty_id" autocomplete="off" required>
-                        <button type="submit" id="find">Find</button>
+                        <button name="find" type="submit" id="find">Find</button>
                     </div>
                 
                     <div class="table-responsive">
@@ -80,32 +80,66 @@
                             <tbody>
                             <?php
                                 //Fetching details from database for insertion in table
-                                $query = "SELECT * FROM details ORDER BY faculty_id ASC";
-                                $result = $db->query($query);
-                                while($row = $result->fetchArray(SQLITE3_ASSOC)){
-                                    $id = $row['id'];
-                                    $name = $row['names'];
-                                    $dept = $row['dept'];
-                                    $photo = $row['photo'];
-                                    $gender = $row['gender'];
-                                    $email = $row['email'];
-                                    $mobno = $row['mobno'];
-                                    $address = $row['addr'];
-                                    $fac_id = $row['faculty_id'];
+                                if(isset($_POST['find'])){
+                                    $f_id = $_POST['faculty_id'];
 
-                                    // Inserting rows in table
-                                    echo "<tr>";
-                                    echo "<td>{$fac_id}</td>";
-                                    echo "<td>{$name}</td>";
-                                    echo "<td>{$dept}</td>";
-                                    echo "<td><img src='../user_images/$photo' alt='Photo' class='table-image'></td>";
-                                    echo "<td>{$gender}</td>";
-                                    echo "<td>{$email}</td>";
-                                    echo "<td>{$mobno}</td>";
-                                    echo "<td>{$address}</td>";
-                                    echo "<td><a onClick=\"javascript: return confirm('Are you sure?')\" href='view.php?delete=$id' class='ps-3'><i class='far fa-trash-alt'></i></a></td>";
-                                    echo "<td><a href='./update.php?edit=$id' class='ps-3'><i class='fas fa-pencil-alt'></i></a></td>";
-                                    echo "</tr>";
+                                    $query1 = "SELECT * FROM details WHERE faculty_id=$f_id";
+                                    $result2 = $db->query($query1);
+                                    while($row = $result2->fetchArray(SQLITE3_ASSOC)){
+                                        $id = $row['id'];
+                                        $name = $row['names'];
+                                        $dept = $row['dept'];
+                                        $photo = $row['photo'];
+                                        $gender = $row['gender'];
+                                        $email = $row['email'];
+                                        $mobno = $row['mobno'];
+                                        $address = $row['addr'];
+                                        $fac_id = $row['faculty_id'];
+
+                                        // Inserting rows in table
+                                        echo "<tr>";
+                                        echo "<td>{$fac_id}</td>";
+                                        echo "<td>{$name}</td>";
+                                        echo "<td>{$dept}</td>";
+                                        echo "<td><img src='../user_images/$photo' alt='Photo' class='table-image'></td>";
+                                        echo "<td>{$gender}</td>";
+                                        echo "<td>{$email}</td>";
+                                        echo "<td>{$mobno}</td>";
+                                        echo "<td>{$address}</td>";
+                                        echo "<td><a onClick=\"javascript: return confirm('Are you sure?')\" href='view.php?delete=$id' class='ps-3'><i class='far fa-trash-alt'></i></a></td>";
+                                        echo "<td><a href='./update.php?edit=$id' class='ps-3'><i class='fas fa-pencil-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }
+
+                                }
+                                else{
+                                    $query = "SELECT * FROM details ORDER BY faculty_id ASC";
+                                    $result = $db->query($query);
+                                    while($row = $result->fetchArray(SQLITE3_ASSOC)){
+                                        $id = $row['id'];
+                                        $name = $row['names'];
+                                        $dept = $row['dept'];
+                                        $photo = $row['photo'];
+                                        $gender = $row['gender'];
+                                        $email = $row['email'];
+                                        $mobno = $row['mobno'];
+                                        $address = $row['addr'];
+                                        $fac_id = $row['faculty_id'];
+
+                                        // Inserting rows in table
+                                        echo "<tr>";
+                                        echo "<td>{$fac_id}</td>";
+                                        echo "<td>{$name}</td>";
+                                        echo "<td>{$dept}</td>";
+                                        echo "<td><img src='../user_images/$photo' alt='Photo' class='table-image'></td>";
+                                        echo "<td>{$gender}</td>";
+                                        echo "<td>{$email}</td>";
+                                        echo "<td>{$mobno}</td>";
+                                        echo "<td>{$address}</td>";
+                                        echo "<td><a onClick=\"javascript: return confirm('Are you sure?')\" href='view.php?delete=$id' class='ps-3'><i class='far fa-trash-alt'></i></a></td>";
+                                        echo "<td><a href='./update.php?edit=$id' class='ps-3'><i class='fas fa-pencil-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }
                                 }
 
                             ?>
@@ -128,7 +162,7 @@
                         }
 
                         // Deleting photo from user_images folder
-                        unlink("../user_images/{$photo_name}");
+                        unlink("../user_images/{$photo_name}.jpeg");
                         
                         // Deleting selected row from details table
                         $db->exec("DELETE FROM details WHERE id = {$the_id}");
