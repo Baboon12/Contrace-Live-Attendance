@@ -136,16 +136,16 @@ while True:
                 if first_read:
                     eyes_detected = 1
                 elif not first_read:
-                    cv2.putText(img, "Eyes open", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+                    cv2.putText(img, "Eyes open", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 133, 51), 2)
             else:
                 if first_read:
-                    cv2.putText(img, "No Eyes detected!", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                    cv2.putText(img, "No Eyes detected!", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 133, 51), 2)
                 else:
-                    cv2.putText(img, "Blink Detected!!", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+                    cv2.putText(img, "Have a good day!", (70, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 133, 51), 4)
                     cv2.imshow('Webcam', img)
                     cv2.waitKey(1)
                     eyes_blinked = True
-                    print("Blink Detected!!")
+                    print("Have a good day!")
 
     if name == "Unknown" or eyes_blinked == False:
         cv2.imshow('Webcam', img)
