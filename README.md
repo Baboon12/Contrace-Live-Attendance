@@ -52,3 +52,17 @@ Keep all the project related files here
 Open a Browser and type `localhost\folder_name`. This should take you to the Website
 
 To run the actual face recognition project: Run `folder_name\Contrace\attendance.bat`
+
+
+## Authors
+
+(alphabetically)
+- [@Bhavya Sura](https://www.github.com/Baboon12)
+- [@Darshil Sanghvi](https://github.com/darshilsanghvi)
+- [@Pratham Dedhiya](https://github.com/prathamdedhiya17)
+
+## Badges
+
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![Project](https://img.shields.io/badge/Project-Contrace--Live%20Attendance-green)](https://opensource.org/licenses/) 
+[![Authors](https://img.shields.io/badge/Authors-Bhavya%20Sura%2C%20Darshil%20Sanghvi%20and%20Pratham%20Dedhiya%20-orange)](https://opensource.org/licenses/)
